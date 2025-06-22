@@ -1,7 +1,7 @@
 # Raspberry Pi baremetal ARM assembly
 
 open cmd in the program folder or navigate to the program folder in cmd
-to compile the code and generate the .img file type <br>
+to compile the code and generate the kernel.img file <br>
 ->``make``
 
 To run the code, put the `kernel.img` in a FAT32 formatted SD card along with `bootcode.bin`, `fixup.dat` & `start.elf`
@@ -12,3 +12,15 @@ To run the code, put the `kernel.img` in a FAT32 formatted SD card along with `b
 <br>`fixup.dat` -	Provides GPU memory split and other configuration data for `start.elf`
 
 Find these files for Raspberry pi 3 in `SD backup` folder.
+
+# requirements
+### Windows
+<br>Install [Chocolatey package installer](https://chocolatey.org/install) (PowerShell)
+<br>>```Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))```
+<br>Install make
+<br>>`choco install make`
+<br>Install arm-none-eabi-gcc from [here](https://developer.arm.com/downloads/-/gnu-rm)
+<br>               OR
+<br>>`choco install gcc-arm-embedded`
+### Linux
+<br>->`sudo apt-get install gcc-arm-none-eabi`
