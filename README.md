@@ -18,7 +18,7 @@ Find these files for Raspberry pi 3 in `SD backup` folder.
 Install [Chocolatey package installer](https://chocolatey.org/install) (PowerShell)
 <br>
 ->`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
-<br>Install make
+<br><br>Install make
 <br>
 ->`choco install make`
 <br>Install arm-none-eabi-gcc from [here](https://developer.arm.com/downloads/-/gnu-rm)
