@@ -1,2 +1,115 @@
-# raspberrypi3_baremetal_arm
-Simple GPIO control using memory mapped registers on raspberry pi baremetal ASM
+# raspberryp_baremetal_arm
+Simple GPIO control using memory mapped registers on raspberry pi baremetal ASM, understanding basic ARM assembly, liker scripts...
+
+Use GPFSEL to Declare GPIO Purpose - 
+
+        Raspberry Pi 3 
+SoC: Broadcom BCM2837
+CPU: 64-bit ARM Cortex-A53, quad-core @ 1.2–1.4 GHz
+Peripheral Base: 0x3F000000
+GPFSEL0	 GPIO 0 – 9	0x3F200000
+GPFSEL1	 GPIO 10 – 19	0x3F200004
+GPFSEL2	 GPIO 20 – 29	0x3F200008
+GPFSEL3	 GPIO 30 – 39	0x3F20000C
+GPFSEL4	 GPIO 40 – 49	0x3F200010
+GPFSEL5	 GPIO 50 – 53	0x3F200014
+
+        Raspberry Pi 4
+SoC: Broadcom BCM2711
+CPU: 64-bit ARM Cortex-A72, quad-core @ 1.5 GHz
+Peripheral Base: 0xFE000000
+GPFSEL0	 GPIO 0 – 9	0xFE200000
+GPFSEL1	 GPIO 10 – 19	0xFE200004
+GPFSEL2	 GPIO 20 – 29	0xFE200008
+GPFSEL3	 GPIO 30 – 39	0xFE20000C
+GPFSEL4	 GPIO 40 – 49	0xFE200010
+GPFSEL5	 GPIO 50 – 53	0xFE200014
+
+       Raspberry Pi Zero/Zero W
+SoC: Broadcom BCM2835 (same as Raspberry Pi 1)
+CPU: 32-bit ARM1176JZF-S, single-core @ 1.0 GHz
+Peripheral base: 0x20000000
+GPFSEL0  GPIO 0 – 9	0x20200000
+GPFSEL1	 GPIO 10 – 19	0x20200004
+GPFSEL2	 GPIO 20 – 29	0x20200008
+GPFSEL3	 GPIO 30 – 39	0x2020000C
+GPFSEL4	 GPIO 40 – 49	0x20200010
+GPFSEL5	 GPIO 50 – 53	0x20200014
+
+
+Each register has 32 bits - [1 byte = 8 bits] each bit stores either '1' or '0'
+
+declaring input output: 
+000	        Input
+001	        Output
+100–111	    Alternate Functions (UART, I2C, etc.)
+
+
+Bit index:        31,30,29 ........ 8,7,6  5,4,3  2,1,0 
+example- (pi3)       ↓               ↓      ↓      ↓
+Bits:       [GPIO    29 ....   GPIO  22     21     20]   [GPFSEL2]
+Value:      00000000 ...             000   001    000   [declares GPIO 21 as output rest input]
+
+Binary: 00000000000000000000000000001000  - all 32 bits data in GPFSEL2 for only GPIO21 output
+Bits:                             ↑↑↑
+Position:                         543 → GPIO21 
+
+
+Use GPSET0/GPCLR0 to declare GPIO state [HIGH, LOW] - 
+
+
+| Register| Address (Raspberry Pi 3)|      Description          |
+|---------|-------------------------|---------------------------|
+| `GPSET0`|      `0x3F20001C`       | Set GPIO 0–31 high        |
+| `GPCLR0`|      `0x3F200028`       | Clear GPIO 0–31 (set low) |
+| `GPLEV0`|      `0x3F200034`       |Read GPIO 0–31 level(input)|
+|_________|_________________________|___________________________|
+
+
+| Register| Address (Raspberry Pi 4)|      Description          |
+|---------|-------------------------|---------------------------|
+| `GPSET0`|      `0xFE20001C`       | Set GPIO 0–31 high        |
+| `GPCLR0`|      `0xFE200028`       | Clear GPIO 0–31 (set low) |
+| `GPLEV0`|      `0xFE200034`       |Read GPIO 0–31 level(input)|
+|_________|_________________________|___________________________|
+
+
+| Register| Address (Raspberry Pi 0)|      Description          |
+|---------|-------------------------|---------------------------|
+| `GPSET0`|      `0x2020001C`       | Set GPIO 0–31 high        |
+| `GPCLR0`|      `0x20200028`       | Clear GPIO 0–31 (set low) |
+| `GPLEV0`|      `0x20200034`       |Read GPIO 0–31 level(input)|
+|_________|_________________________|___________________________|
+
+
+Writing to GPSET0 & GPCLR0 (based on bit position = GPIO) will trigger the GPIO state to change and clear the bits back to 00000000000000000000000000000000
+
+GPIO state is stored and managed internally elsewhere
+
+Writing 1 to specific bit in GPSET0, corresponding GPIO pin will be set to HIGH(3.3V) 
+writing 0 to the same bit in GPSET0 will not show any effect
+Writing to the same bit number in GPCLR0 will set the corresponding GPIO pin to LOW(0V)
+
+ex - 
+to set pin 21 to HIGH
+GPSET0 - 00000000001000000000000000000000
+
+to set pin 21 to LOW
+GPCLR0 - 00000000001000000000000000000000
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+This direct mapping is true only for:
+
+GPIOs 0–31   → GPSET0, GPCLR0, GPLEV0
+
+GPIOs 32–53  → GPSET1, GPCLR1, GPLEV1
+
+GPLEV0 & GPLEV1 are read-only register that tells you the current state (HIGH or LOW) of each GPIO pin from GPIO 0 to GPIO 31.
+
+Bit N = 1 → GPIO pin N is HIGH (3.3V)
+Bit N = 0 → GPIO pin N is LOW (0V)
+
+Raspberry Pi boards like the Pi 3 & pi 4 expose only ~26 usable GPIO pins on the header (40-pin).
+However, the BCM2837 SoC inside the Pi actually has 54 GPIOs total (GPIO 0–53).
+Only a subset of these are connected to the GPIO header.
+The rest are used internally (HDMI, USB, ACT LED, SD card, etc.)
