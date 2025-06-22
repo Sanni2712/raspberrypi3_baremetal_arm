@@ -13,6 +13,8 @@ To run the code, put the `kernel.img` in a FAT32 formatted SD card along with `b
 
 Find these files for Raspberry pi 3 in `SD backup` folder.
 
+LED connected at GPIO 21 should blink
+
 # requirements
 ### Windows
 Install [Chocolatey package installer](https://chocolatey.org/install) (PowerShell)
