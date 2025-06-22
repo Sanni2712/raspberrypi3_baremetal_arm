@@ -15,12 +15,16 @@ Find these files for Raspberry pi 3 in `SD backup` folder.
 
 # requirements
 ### Windows
-<br>Install [Chocolatey package installer](https://chocolatey.org/install) (PowerShell)
-<br>>```Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))```
+Install [Chocolatey package installer](https://chocolatey.org/install) (PowerShell)
+<br>
+->`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
 <br>Install make
-<br>>`choco install make`
+<br>
+->`choco install make`
 <br>Install arm-none-eabi-gcc from [here](https://developer.arm.com/downloads/-/gnu-rm)
 <br>               OR
-<br>>`choco install gcc-arm-embedded`
+<br>
+->`choco install gcc-arm-embedded`
+
 ### Linux
-<br>->`sudo apt-get install gcc-arm-none-eabi`
+>`sudo apt-get install gcc-arm-none-eabi`
