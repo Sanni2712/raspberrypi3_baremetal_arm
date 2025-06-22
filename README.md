@@ -19,15 +19,17 @@ LED connected at GPIO 21 & 20 should blink for [pi3_C](https://github.com/Sanni2
 # requirements
 ### Windows
 Install [Chocolatey package installer](https://chocolatey.org/install) (PowerShell)
+
+>`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
+
+<br>Install make
 <br>
-->`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
-<br><br>Install make
-<br>
-->`choco install make`
+>`choco install make`
+
 <br>Install arm-none-eabi-gcc from [here](https://developer.arm.com/downloads/-/gnu-rm)
 <br>               OR
-<br>
-->`choco install gcc-arm-embedded`
+
+>`choco install gcc-arm-embedded`
 
 ### Linux
 >`sudo apt-get install gcc-arm-none-eabi`
