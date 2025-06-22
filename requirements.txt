@@ -1,0 +1,11 @@
+-------------Windows--------------
+install Chocolatey package installer (PowerShell)
+-->>Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+install make 
+-->>choco install make
+install arm-none-eabi-gcc from https://developer.arm.com/downloads/-/gnu-rm
+                OR
+choco install gcc-arm-embedded
+
+-------------Linux----------------
+sudo apt-get install gcc-arm-none-eabi
