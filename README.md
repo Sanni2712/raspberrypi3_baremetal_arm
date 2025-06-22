@@ -1,4 +1,4 @@
-#Raspberry Pi baremetal ARM assembly
+# Raspberry Pi baremetal ARM assembly
 
 open cmd in the program folder or navigate to the program folder in cmd
 to compile the code and generate the .img file type <br>
