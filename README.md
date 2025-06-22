@@ -1,8 +1,9 @@
 # Raspberry Pi baremetal ARM assembly
 
-open cmd in the program folder or navigate to the program folder in cmd
+open cmd in the program folder or navigate to the program folder in cmd and type
+>`make`
+
 to compile the code and generate the kernel.img file <br>
-->``make``
 
 To run the code, put the `kernel.img` in a FAT32 formatted SD card along with `bootcode.bin`, `fixup.dat` & `start.elf`
 <br>these files are diffrent (but same name) across Raspbrry pi 1,2,3,4,5. Raspberry pi4/5 do not reqire bootcode.bin
