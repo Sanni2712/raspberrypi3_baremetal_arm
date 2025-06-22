@@ -11,7 +11,7 @@ To run the code, put the `kernel.img` in a FAT32 formatted SD card along with `b
 <br>`start.elf` -	The main GPU firmware binary. Responsible for booting Linux or your custom `kernel.img`.
 <br>`fixup.dat` -	Provides GPU memory split and other configuration data for `start.elf`
 
-Find these files for Raspberry pi 3 in `SD backup` folder.
+Find these files for Raspberry pi 3 in [SD backup](https://github.com/Sanni2712/raspberrypi3_baremetal_arm/tree/main/SD%20backup) folder.
 
 LED connected at GPIO 21 should blink
 
