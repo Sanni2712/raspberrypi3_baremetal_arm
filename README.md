@@ -13,7 +13,8 @@ To run the code, put the `kernel.img` in a FAT32 formatted SD card along with `b
 
 Find these files for Raspberry pi 3 in [SD backup](https://github.com/Sanni2712/raspberrypi3_baremetal_arm/tree/main/SD%20backup) folder.
 
-LED connected at GPIO 21 should blink
+LED connected at GPIO 21 should blink for [pi3](https://github.com/Sanni2712/raspberrypi3_baremetal_arm/tree/main/pi3)
+LED connected at GPIO 21 & 20 should blink for [pi3_C](https://github.com/Sanni2712/raspberrypi3_baremetal_arm/tree/main/pi3_C)
 
 # requirements
 ### Windows
