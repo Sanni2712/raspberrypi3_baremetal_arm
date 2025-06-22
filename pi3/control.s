@@ -2,7 +2,7 @@
 .global gpio_set_high
 .global gpio_set_low
 
-// Set GPIO pin to output
+// Set GPIO pin 21 to output
 gpio_set_output:                           
 ldr R4, =0b00000000000000000000000000001000         
 str R4, [R0]  
