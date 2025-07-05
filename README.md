@@ -17,7 +17,7 @@ Find these files for Raspberry pi 3 in [SD backup](https://github.com/Sanni2712/
 LED connected at GPIO 21 should blink for [pi3](https://github.com/Sanni2712/raspberrypi3_baremetal_arm/tree/main/pi3)
 LED connected at GPIO 21 & 20 should blink for [pi3_C](https://github.com/Sanni2712/raspberrypi3_baremetal_arm/tree/main/pi3_C)
 
-# requirements
+## requirements
 ### Windows
 Install [Chocolatey package installer](https://chocolatey.org/install) (PowerShell)
 
@@ -28,7 +28,7 @@ Install [Chocolatey package installer](https://chocolatey.org/install) (PowerShe
 >`choco install make`
 
 <br>Install arm-none-eabi-gcc from [here](https://developer.arm.com/downloads/-/gnu-rm)
-<br>               OR
+<br>               or
 
 >`choco install gcc-arm-embedded`
 
