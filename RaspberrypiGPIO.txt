@@ -44,20 +44,20 @@ declaring input output:
 001	        Output
 100–111	    Alternate Functions (UART, I2C, etc.)
 
-
-Bit index:        31,30,29 ........ 8,7,6  5,4,3  2,1,0 
-example- (pi3)       ↓               ↓      ↓      ↓
-Bits:       [GPIO    29 ....   GPIO  22     21     20]   [GPFSEL2]
-Value:      00000000 ...             000   001    000   [declares GPIO 21 as output rest input]
-
-Binary: 00000000000000000000000000001000  - all 32 bits data in GPFSEL2 for only GPIO21 output
-Bits:                             ↑↑↑
-Position:                         543 → GPIO21 
-
+_______________________________________________________________________________________________
+Bit index:        31,30,29 ........ 8,7,6  5,4,3  2,1,0                                         |
+example- (pi3)       ↓               ↓      ↓      ↓                                            |
+Bits:       [GPIO    29 ....   GPIO  22     21     20]   [GPFSEL2]                              |
+Value:      00000000 ...             000   001    000   [declares GPIO 21 as output rest input] |
+                                                                                                |
+Binary: 00000000000000000000000000001000  - all 32 bits data in GPFSEL2 for only GPIO21 output  |
+Bits:                             ↑↑↑                                                           |
+Position:                         543 → GPIO21                                                  |
+________________________________________________________________________________________________|
 
 Use GPSET0/GPCLR0 to declare GPIO state [HIGH, LOW] - 
 
-
+ _________ _________________________ ___________________________
 | Register| Address (Raspberry Pi 3)|      Description          |
 |---------|-------------------------|---------------------------|
 | `GPSET0`|      `0x3F20001C`       | Set GPIO 0–31 high        |
@@ -65,7 +65,7 @@ Use GPSET0/GPCLR0 to declare GPIO state [HIGH, LOW] -
 | `GPLEV0`|      `0x3F200034`       |Read GPIO 0–31 level(input)|
 |_________|_________________________|___________________________|
 
-
+ _________ _________________________ ___________________________
 | Register| Address (Raspberry Pi 4)|      Description          |
 |---------|-------------------------|---------------------------|
 | `GPSET0`|      `0xFE20001C`       | Set GPIO 0–31 high        |
@@ -73,7 +73,7 @@ Use GPSET0/GPCLR0 to declare GPIO state [HIGH, LOW] -
 | `GPLEV0`|      `0xFE200034`       |Read GPIO 0–31 level(input)|
 |_________|_________________________|___________________________|
 
-
+ _________ _________________________ ___________________________
 | Register| Address (Raspberry Pi 0)|      Description          |
 |---------|-------------------------|---------------------------|
 | `GPSET0`|      `0x2020001C`       | Set GPIO 0–31 high        |
@@ -84,7 +84,7 @@ Use GPSET0/GPCLR0 to declare GPIO state [HIGH, LOW] -
 
 Writing to GPSET0 & GPCLR0 (based on bit position = GPIO) will trigger the GPIO state to change and clear the bits back to 00000000000000000000000000000000
 
-GPIO state is stored and managed internally elsewhere
+GPIO state is stored and managed internally
 
 Writing 1 to specific bit in GPSET0, corresponding GPIO pin will be set to HIGH(3.3V) 
 writing 0 to the same bit in GPSET0 will not show any effect
